@@ -1,12 +1,14 @@
-import React, { FC } from 'react';
-import Test from './components/Test';
+import MainPage from './pages/Main';
+import RegisterPage from '@pages/Register';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-const App: FC = () => {
+const App = (): JSX.Element => {
   return (
-    <div>
-      초기 세팅
-      <Test />
-    </div>
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+    </Routes>
   );
 };
 
