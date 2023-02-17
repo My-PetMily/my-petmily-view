@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  transition: all 0.15s ease-in-out;
+  box-sizing: border-box !important;
+}
+th,
+td {
+  border: 0;
+  vertical-align: top;
+}
+body {
+  font: 11px 'Open Sans', 'Nanum Gothic', 'arial', 'sans-serif';
+  color: #353535;
+  background: #fff;
+}
+input {
+  font-size: 100%;
+  font-family: 'Open Sans', 'Nanum Barun Gothic', 'Nanum Gothic', Arial,
+    Helvetica, sans-serif;
+  color: #353535;
+  vertical-align: middle;
+  outline: none;
+}
