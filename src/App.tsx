@@ -4,6 +4,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Reset } from 'styled-reset';
 import './app.css';
+import LoginPage from '@pages/Login';
 
 const App = (): JSX.Element => {
   return (
@@ -12,6 +13,7 @@ const App = (): JSX.Element => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </>
   );
