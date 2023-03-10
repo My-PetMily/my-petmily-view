@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 a {
   text-decoration: none;
   transition: all 0.15s ease-in-out;
@@ -14,7 +15,7 @@ td {
   vertical-align: top;
 }
 body {
-  font: 11px 'Open Sans', 'Nanum Gothic', 'arial', 'sans-serif';
+  font: 11px 'GoodRG';
   color: #353535;
   background: #fff;
 }
@@ -24,5 +25,6 @@ input {
     Helvetica, sans-serif;
   color: #353535;
   vertical-align: middle;
+  padding-left: 10px;
   outline: none;
 }
