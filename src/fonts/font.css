@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'GoodBD';
+  src: url('./good-bold.ttf');
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GoodRG';
+  src: url('./good-regular.ttf');
+  font-style: normal;
+}

@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import {
   Container,
   Contents,
-  RegisterTitle,
   Wrap,
-  RegisterTable,
-  TableTh,
+  Form,
+  TitleH2,
+  Tr,
+  Td,
+  Table,
+  Th,
   Input,
-  Btn,
-  WrapEmail,
-  SubmitWrap,
+  DetailMessage,
+  SubmitBtnWrap,
   SubmitBtn,
 } from './styles';
 
@@ -32,16 +34,20 @@ const Register = () => {
       <header>이미지</header>
       <Container>
         <Contents>
-          <RegisterTitle>
-            <h2 style={{ margin: '0 auto' }}>REGISTER</h2>
-          </RegisterTitle>
-          <form>
-            <RegisterTable>
+          <TitleH2>
+            <h2>REGISTER</h2>
+          </TitleH2>
+          <Form>
+            <Table>
+              <colgroup>
+                <col style={{ width: '150px' }} />
+                <col style={{ width: 'auto' }} />
+              </colgroup>
               <tbody>
-                <tr>
-                  <TableTh>회원구분</TableTh>
-                  <td>
-                    <Input
+                <Tr>
+                  <Th>회원구분</Th>
+                  <Td>
+                    <input
                       type="radio"
                       name="selectMember"
                       value="basic"
@@ -49,80 +55,63 @@ const Register = () => {
                       defaultChecked
                     />
                     <label style={{ marginRight: 5 }}>개인회원</label>
-                    <Input
+                    <input
                       type="radio"
                       name="selectMember"
                       value="company"
                       onChange={handleChange}
                     />
                     <label>사업자회원</label>
-                  </td>
-                </tr>
+                  </Td>
+                </Tr>
               </tbody>
-            </RegisterTable>
-            <h3
-              style={{
-                margin: '50px 0 20px',
-                fontSize: 12,
-                color: '#353535',
-                fontWeight: 'Bold',
-              }}
-            >
-              기본정보
-            </h3>
-            <RegisterTable>
+            </Table>
+            <h3>기본정보</h3>
+            <Table>
+              <colgroup>
+                <col style={{ width: '150px' }} />
+                <col style={{ width: 'auto' }} />
+              </colgroup>
               <tbody>
-                <tr>
-                  <TableTh>닉네임</TableTh>
-                  <td>
+                <Tr>
+                  <Th>닉네임</Th>
+                  <Td>
                     <Input type="text" />
-                    <span>닉네임을 입력해주세요</span>(한글/영대소문자 최대
-                    20자)
-                  </td>
-                </tr>
-                <tr>
-                  <TableTh>비밀번호</TableTh>
-                  <td>
+                    <DetailMessage>(한글/영대소문자 최대 20자)</DetailMessage>
+                  </Td>
+                </Tr>
+                <Tr>
+                  <Th>비밀번호</Th>
+                  <Td>
+                    <Input
+                      type="password"
+                      placeholder="비밀번호를 입력해주세요"
+                    />
+                    <DetailMessage>
+                      (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10~16자)
+                    </DetailMessage>
+                  </Td>
+                </Tr>
+                <Tr>
+                  <Th>비밀번호 확인</Th>
+                  <Td>
                     <Input type="password" />
-                    <span>
-                      (영문 대소문자/숫자/특수문자 중 2가지 이상 조합,
-                      10자~16자)
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <TableTh>비밀번호 확인</TableTh>
-                  <td>
-                    <Input type="password" />
-                    <span></span>
-                  </td>
-                </tr>
-                <tr>
-                  <TableTh>이메일</TableTh>
-                  <td>
-                    <WrapEmail>
-                      <Input type="email" />
-                      <span></span>
-                      <Btn>인증번호 받기</Btn>
-                    </WrapEmail>
-                  </td>
-                </tr>
-                <tr>
-                  <TableTh>이메일 확인</TableTh>
-                  <td>
-                    <WrapEmail>
-                      <Input type="text" />
-                      <span></span>
-                      <Btn>확인</Btn>
-                    </WrapEmail>
-                  </td>
-                </tr>
+                    <DetailMessage>(일치여부)</DetailMessage>
+                  </Td>
+                </Tr>
+                <Tr>
+                  <Th>이메일</Th>
+                  <Td>
+                    <Input type="email" />
+                    <DetailMessage>(중복여부)</DetailMessage>
+                  </Td>
+                </Tr>
               </tbody>
-            </RegisterTable>
-            <SubmitWrap>
+            </Table>
+            <SubmitBtnWrap>
               <SubmitBtn>회원가입</SubmitBtn>
-            </SubmitWrap>
-          </form>
+            </SubmitBtnWrap>
+          </Form>
         </Contents>
       </Container>
     </Wrap>

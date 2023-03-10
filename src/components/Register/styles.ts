@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 export const Wrap = styled.section`
-  font: 11px 'Open Sans', 'Nanum Gothic', 'arial', 'sans-serif';
+  font: 11px 'GoodRG';
   color: #353535;
   background: #fff;
-  position: relative;
-  margin: 0 auto;
+  min-width: 410px;
 `;
 
 export const Container = styled.article`
@@ -18,9 +17,27 @@ export const Contents = styled.div`
   margin: 0 auto;
   min-height: 300px;
   width: 100%;
+  & table {
+    position: relative;
+    margin: 10px 0 0;
+    line-height: 1.5;
+  }
+  & h3 {
+    padding: 50px 10px 10px;
+    font-size: 13px;
+    color: #353535;
+  }
 `;
 
-export const RegisterTitle = styled.div`
+export const Form = styled.form`
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid #d5d5d5;
+  margin-bottom: 150px;
+`;
+
+export const TitleH2 = styled.div`
   margin: 30px 0 50px;
   text-align: center;
   & h2 {
@@ -30,19 +47,17 @@ export const RegisterTitle = styled.div`
     font-weight: 500;
     letter-spacing: 1px;
     text-transform: uppercase;
+    font-family: 'GoodBD';
   }
 `;
-
-export const RegisterTable = styled.table`
+export const Table = styled.table`
   width: 100%;
-  margin: 10px 0 0;
-  border-bottom: 1px solid #dfdfdf;
-  border-top: 0;
-  color: #fff;
-  line-height: 1.5;
+  border: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
   & td {
-    padding: 8px 10px 7px;
     border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
     color: #353535;
     vertical-align: middle;
     word-break: break-all;
@@ -50,60 +65,52 @@ export const RegisterTable = styled.table`
   }
 `;
 
-export const TableTh = styled.th`
+export const Th = styled.th`
   padding: 11px 0 10px 18px;
-  border: 1px solid #dfdfdf;
-  width: 150px;
   color: #353535;
   text-align: left;
-  font-weight: normal;
   background-color: #fff;
+  display: block;
+  font-size: 13px;
+  font-family: 'GoodBD';
+`;
+
+export const Tr = styled.tr`
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+`;
+
+export const Td = styled.td`
+  padding: 7px 10px 5px;
+  display: block;
 `;
 
 export const Input = styled.input`
+  display: block;
   height: 22px;
   line-height: 22px;
   padding: 2px 4px;
-  margin-right: 5px;
   border: 1px solid #d5d5d5;
   color: #353535;
   font-size: 12px;
 `;
 
-export const EmailTd = styled.td`
-  display: flex;
-  justify-content: space-between;
-  width: 290px;
+export const DetailMessage = styled.div`
+  margin-top: 4px;
 `;
 
-export const Btn = styled.button`
-  display: block;
-  background-color: #444;
+export const SubmitBtnWrap = styled.div`
+  padding: 10px 0;
+  text-align: center;
+`;
+
+export const SubmitBtn = styled.button`
+  font-family: 'GoodRG';
+  width: 120px;
+  padding: 15px 10px;
   color: #fff;
-  width: 90px;
-  cursor: pointer;
-  height: 22px;
+  background-color: #444;
+  outline: none;
   border: none;
-  :hover {
-    background-color: #377b38;
-    border: none;
-  }
-`;
-
-export const WrapEmail = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 290px;
-`;
-
-export const SubmitWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-`;
-
-export const SubmitBtn = styled(Btn)`
-  height: 100%;
-  width: 130px;
-  padding: 10px 16px;
 `;
