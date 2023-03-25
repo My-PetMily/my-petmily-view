@@ -131,7 +131,7 @@ const Register = () => {
             <InputWrap>
               <LabelWrap>
                 <Label htmlFor="email">이메일</Label>
-                <span>이메일 형식을 지켜서 입력해주세요!</span>
+                { onEmail && <span>이메일 형식을 지켜서 입력해주세요!</span> }
               </LabelWrap>
               <Input
                 type="email"
