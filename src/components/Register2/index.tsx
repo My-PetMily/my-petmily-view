@@ -23,16 +23,8 @@ const Register = () => {
   });
 
   const [onNickname, setOnNickname] = useState(false);
-
-  console.log(data.nicknam1e);
-
-  useEffect(() => {
-    if (!data.nickname) {
-      setOnNickname(false);
-      return;
-    }
-    setOnNickname(true);
-  }, [data.nickname]);
+  const [onPassword, setOnPassword] = useState(false);
+  const [onEmail, setOnEmail] = useState(false);
 
   const [selectMember, setSelectMember] = useState<{ [x: string]: string }>({
     select: 'basic',
@@ -43,9 +35,31 @@ const Register = () => {
     setSelectMember({
       [name]: value,
     });
-
-    console.log(selectMember);
   };
+
+  useEffect(() => {
+    if (!data.nickname) {
+      setOnNickname(false);
+      return;
+    }
+    setOnNickname(true);
+  }, [data.nickname]);
+
+  useEffect(() => {
+    if (!data.password) {
+      setOnPassword(false);
+      return;
+    }
+    setOnPassword(true);
+  }, [data.password]);
+
+  useEffect(() => {
+    if (!data.email) {
+      setOnEmail(false);
+      return;
+    }
+    setOnEmail(true);
+  }, [data.email]);
 
   return (
     <Wrap>
@@ -93,11 +107,12 @@ const Register = () => {
             <InputWrap>
               <LabelWrap>
                 <Label htmlFor="password">비밀번호</Label>
-                <span>대소문자/숫자/특수문자 중 2가지 이상 10자~16자</span>
+                { onPassword && <span>대소문자/숫자/특수문자 중 2가지 이상 10자~16자</span> }
               </LabelWrap>
               <Input
                 type="password"
                 id="password"
+                name="password"
                 placeholder="대소문자/숫자/특수문자 중 2가지 이상 10자~16자"
               />
               <DetailEx>정규식에 안맞는거 아닌가요?</DetailEx>
