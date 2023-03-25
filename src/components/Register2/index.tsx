@@ -11,9 +11,12 @@ import {
   InputWrap,
   SubmitBtnWrap,
   SubmitBtn,
-  DetailEx,
+  DetailError,
+  DetailSuccess,
   LabelWrap,
 } from './styles';
+import instance from 'apis';
+import useDebouncedEffect from '@hooks/useDebounce';
 
 const Register = () => {
   const [data, handler, setData] = useInput({
@@ -22,9 +25,15 @@ const Register = () => {
     email: '',
   });
 
-  const [onNickname, setOnNickname] = useState(false);
-  const [onPassword, setOnPassword] = useState(false);
-  const [onEmail, setOnEmail] = useState(false);
+  const { nickname, password, email } = data;
+
+  const [nickNameDetail, setNickNameDetail] = useState({
+    success: '',
+    error: '',
+  });
+
+  const [passwordError, setPasswordError] = useState('');
+  const [emailError, setEmail] = useState('');
 
   const [selectMember, setSelectMember] = useState<{ [x: string]: string }>({
     select: 'basic',
@@ -37,29 +46,48 @@ const Register = () => {
     });
   };
 
-  useEffect(() => {
-    if (!data.nickname) {
-      setOnNickname(false);
-      return;
-    }
-    setOnNickname(true);
-  }, [data.nickname]);
+  // then -> res.data.message
+  // err -> err.response.data
+  useDebouncedEffect(
+    () => {
+      // 초기 렌더링시 바로 api요청 보내는 것을 막기 위해
+      if (!nickNameDetail.error && !nickname) {
+        return;
+      }
+      instance
+        .get(`/nickname?nickname=${nickname}`)
+        .then((res) => {
+          console.log(res);
+          setNickNameDetail({
+            success: res.data.message,
+            error: '',
+          });
+        })
+        .catch((err) =>
+          setNickNameDetail({
+            success: '',
+            error: err.response.data.message,
+          }),
+        );
+    },
+    500,
+    [nickname],
+  );
 
-  useEffect(() => {
-    if (!data.password) {
-      setOnPassword(false);
-      return;
-    }
-    setOnPassword(true);
-  }, [data.password]);
-
-  useEffect(() => {
-    if (!data.email) {
-      setOnEmail(false);
-      return;
-    }
-    setOnEmail(true);
-  }, [data.email]);
+  useDebouncedEffect(
+    () => {
+      // 초기 렌더링시 바로 api요청 보내는 것을 막기 위해
+      if (!emailError && !email) {
+        return;
+      }
+      instance
+        .get(`/email?email=${data.email}`)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    },
+    500,
+    [data.email],
+  );
 
   return (
     <Wrap>
@@ -92,22 +120,29 @@ const Register = () => {
             <InputWrap>
               <LabelWrap>
                 <Label htmlFor="nickName">닉네임</Label>
-                {onNickname && <span>한글/영대소문자 최대 20자</span>}
+                {nickname && <span>한글/영대소문자 최대 20자</span>}
               </LabelWrap>
               <Input
                 type="text"
                 id="nickname"
                 name="nickname"
                 placeholder="한글/영대소문자 최대 20자"
-                value={data.nickname}
+                value={nickname}
                 onChange={handler}
               />
-              <DetailEx>닉네임 중복입니다!</DetailEx>
+              {nickNameDetail.error && (
+                <DetailError>{nickNameDetail.error}</DetailError>
+              )}
+              {nickNameDetail.success && (
+                <DetailSuccess>{nickNameDetail.success}</DetailSuccess>
+              )}
             </InputWrap>
             <InputWrap>
               <LabelWrap>
                 <Label htmlFor="password">비밀번호</Label>
-                { onPassword && <span>대소문자/숫자/특수문자 중 2가지 이상 10자~16자</span> }
+                {password && (
+                  <span>대소문자/숫자/특수문자 중 2가지 이상 10자~16자</span>
+                )}
               </LabelWrap>
               <Input
                 type="password"
@@ -115,7 +150,7 @@ const Register = () => {
                 name="password"
                 placeholder="대소문자/숫자/특수문자 중 2가지 이상 10자~16자"
               />
-              <DetailEx>정규식에 안맞는거 아닌가요?</DetailEx>
+              <DetailError>정규식에 안맞는거 아닌가요?</DetailError>
             </InputWrap>
             <InputWrap>
               <LabelWrap>
@@ -126,19 +161,19 @@ const Register = () => {
                 id="passwordCheck"
                 placeholder="비밀번호 확인"
               />
-              <DetailEx>비밀번호가 일치하지 않아요!</DetailEx>
+              <DetailError>비밀번호가 일치하지 않아요!</DetailError>
             </InputWrap>
             <InputWrap>
               <LabelWrap>
                 <Label htmlFor="email">이메일</Label>
-                { onEmail && <span>이메일 형식을 지켜서 입력해주세요!</span> }
+                {data.email && <span>이메일 형식을 지켜서 입력해주세요!</span>}
               </LabelWrap>
               <Input
                 type="email"
                 id="email"
                 placeholder="이메일을 입력해주세요"
               />
-              <DetailEx>중복입니다!</DetailEx>
+              <DetailError>중복입니다!</DetailError>
             </InputWrap>
             <SubmitBtnWrap>
               <SubmitBtn disabled={false}>회원가입</SubmitBtn>

@@ -89,7 +89,12 @@ export const SubmitBtn = styled.button`
   }
 `;
 
-export const DetailEx = styled.div`
+export const DetailError = styled.div`
   color: red;
+  margin-top: 5px;
+`;
+
+export const DetailSuccess = styled.div`
+  color: blue;
   margin-top: 5px;
 `;
