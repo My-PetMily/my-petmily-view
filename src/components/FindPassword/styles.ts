@@ -98,3 +98,14 @@ export const Button = styled.button`
     background-color: #377b38;
   }
 `;
+
+export const ToLoginBtn = styled.button`
+  padding: 10px 0;
+  border: 1px solid transparent;
+  color: #fff;
+  background-color: #444;
+  cursor: pointer;
+  :hover {
+    background-color: #377b38;
+  }
+`;
